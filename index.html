@@ -1,0 +1,187 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>JA|Desarrolladores</title>
+        <!--<link rel="stylesheet" type="text/css" href="librerias/css/960css/min/reset.css">-->
+        <link rel="stylesheet" type="text/css" href="librerias/bootstrap/theming/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="librerias/bootstrap/theming/bootstrap-responsive.min.css">
+        <link rel="stylesheet" type="text/css" href="librerias/bootstrap/theming/bootswatch.css">
+        <style type="text/css">
+        	body{
+        		/*
+                background: rgb(239,230,131);
+                background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2VmZTY4MyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmN2JhNTkiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+                background: -moz-linear-gradient(top,  rgba(239,230,131,1) 0%, rgba(247,186,89,1) 100%);
+                background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(239,230,131,1)), color-stop(100%,rgba(247,186,89,1)));
+                background: -webkit-linear-gradient(top,  rgba(239,230,131,1) 0%,rgba(247,186,89,1) 100%);
+                background: -o-linear-gradient(top,  rgba(239,230,131,1) 0%,rgba(247,186,89,1) 100%);
+                background: -ms-linear-gradient(top,  rgba(239,230,131,1) 0%,rgba(247,186,89,1) 100%);
+                background: linear-gradient(to bottom,  rgba(239,230,131,1) 0%,rgba(247,186,89,1) 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#efe683', endColorstr='#f7ba59',GradientType=0 );
+                */
+                background-color: white;
+                padding-top: 0px;
+        	}
+            #wrapContenido{
+                margin-top: 10px;
+            }
+            footer {
+                background-color: #d44413;
+                display: block;
+                width: 100%;
+
+                position: fixed;
+                right: 0;
+                left: 0;
+                z-index: 1030;
+                margin-bottom: 0;
+            }
+            #site{
+                padding-top: 10px;
+            }
+            .footerElements{
+                color: white;
+                -webkit-border-radius: 4px;
+                -moz-border-radius: 4px;
+                -ms-border-radius: 4px;
+                -o-border-radius: 4px;
+                background-color: #a5360f;
+                padding: 5px;
+                margin: 5px 0;
+            }
+        </style>
+        <script type="text/javascript" src="librerias/jQuery/jquery-1.7.1.min.js"></script>
+        <script type="text/javascript" src="librerias/bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="librerias/bootstrap/js/bootswatch.js"></script>
+        <script type="text/javascript" src="librerias/jQuery/jquery.gravatar/md5.js"></script>
+        <script type="text/javascript" src="librerias/jQuery/jquery-click-ajax.js"></script>
+        <script type="text/javascript" src="http://nodetifications.no-ip.org:3030/socket.io/socket.io.js"></script>
+        <!-- <script type="text/javascript" src="librerias/jQuery/jquery.gravatar/jquery.gravatar.js"></script> -->
+        <script type="text/javascript">
+            //------------------------- Node nodemailer
+                var websocket = io.connect("http://nodetifications.no-ip.org:3030"),contador=-1;
+                websocket.on("notificacion",function (datosServidor){
+
+                                            contador = (contador+1)%6;
+                                            if(contador<5)
+                                                $('#notificaciones').append("<div>"+datosServidor+"</div>");
+                                            else{
+                                                $('#notificaciones').empty().append("<div>"+datosServidor+"</div>");
+                                            }
+                                            //var fecha = $.datepicker.formatDate('dd/mm/yy', new Date());
+                                            //$("#freeow-tr").freeow('nodetifications: '+fecha, datosServidor,style);
+
+                                        });
+            //-------------------------
+            String.prototype.trim = function() {
+                return this.replace(/^\s+|\s+$/g,"");
+            }
+            String.prototype.ltrim = function() {
+                return this.replace(/^\s+/,"");
+            }
+            String.prototype.rtrim = function() {
+                return this.replace(/\s+$/,"");
+            }
+            $(document).bind('ready',function(){
+                $('a').clickeable();
+                $('li.active').children('a').click();
+                //$('#gravatar').empty().append($.gravatar('juanvilu@gmail.com'));
+                var url = "http://es.gravatar.com/",
+                    hash = hex_md5('juanvilu@gmail.com'.trim().toLowerCase())+'.json';
+                //-----------------------------------------------
+            /*
+                $.ajax({
+                    url: url+hash,
+                    dataType: 'jsonp',
+                    jsonp: 'callback',
+                    jsonpCallback: 'callbackGravatar'
+                });
+            */
+
+            });
+            function callbackGravatar(profile){
+                $('#gravatar').empty().append('<img src="'+profile.entry[0].photos[0].value+'"></>');
+                $('#gravatar').append('<span>'+profile.entry[0].name.formatted+'</span>');
+            };
+        </script>
+        <!--<script type="text/javascript" src="http://es.gravatar.com/ad75d230786a9163a14d8b51ea38d567.json?callback=callbackGravatar"></script>-->
+    </head>
+    <body>
+    	<div id="wrapSite">
+    		<div id="site">
+                <!-- ENCABEZADO -->
+    			<header class="container">
+    				<div class="row">
+                        <div class="span4">
+                            <h4><span class="btn-info"> JA| </span><span class="btn-primary"> Desarrolladores </span> <small>Haciendo cambios con pocos clicks.</small></h4>
+                        </div>
+                        <nav class="span8">
+                                <div class="row">
+                                    <div class="navbar">
+                                        <div class="navbar-inner">
+                                            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                                                <span class="icon-bar"></span>
+                                                <span class="icon-bar"></span>
+                                                <span class="icon-bar"></span>
+                                            </a>
+                                            <div class="nav-collapse in collapse" id="main-menu">
+                                                <ul class="nav">
+                                                    <li class="active"><a href="inicio.html" rel="ajax" destino="#contenido">Inicio</a></li>
+                                                    <li><a href="nosotros.html" rel="ajax" destino="#contenido">Nosotros</a></li>
+                                                    <li><a href="servicios.html" rel="ajax" destino="#contenido">Servicios</a></li>
+                                                    <li><a href="proyectos.html" rel="ajax" destino="#contenido">Proyectos</a></li>
+                                                    <li><a href="contacto.html" rel="ajax" destino="#contenido">Contacto</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                        </nav>
+                    </div>
+    			</header>
+                <!-- SECCIÓN -->
+                <section id="wrapContenido" class="container heightContenido">
+                    <div class="row">
+                        <div class="span3">IMAGEN empresarial</div>
+                        <article class="span9">
+                            <div id="contenido"></div>
+                            <!--<div id="gravatar">loading...</div>-->
+                        </article>
+                    </div>
+                </section>
+                <!-- PIE -->
+                <footer class="navbar navbar-fixed-bottom">
+                    <div class="container">
+                        <div class="row" style="display: none;">
+                            <div id="navTwitter">
+                                <div class="span1">1</div>
+                                <div class="offset10 span1 pull-right">1</div>
+                            </div>
+                            <div id="notificaciones" class="well">
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <!--
+                            <div class="span3">
+                                <div class="footerElements">Visitanos</div>
+                            </div>
+                            <div class="span3">
+                                <div class="footerElements">Llamanos</div>
+                            </div>
+                            -->
+                            <div class="offset6 span3">
+                                <div class="footerElements">Contactanos</div>
+                            </div>
+                            <div class="span3">
+                                <div class="footerElements">Derechos reservados</div>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+    		</div>
+    	</div>
+    </body>
+</html>
