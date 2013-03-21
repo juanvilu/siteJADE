@@ -1,0 +1,60 @@
+.wrapMultiPhone{
+    position: relative;
+    float: left;
+    margin: 0 10px 0 0 ; 
+    width: 300px;
+    height: 26px; 
+    border: dotted silver 1px; 
+    overflow: hidden;     
+}
+
+.wrapBtns{
+    top:2px;
+}
+.listPhone{
+    position: absolute;                 
+    top: 0;
+    left: 0;    
+}
+
+.listPhone span{
+    color: black !important;
+    display: inline-block !important;    
+}
+.itemPhoneSelected{
+    float: left; 
+    width: 16px;
+    height: 16px;                
+    border: dotted green 1px;
+    margin: 1% 10px 1% 1px;
+    background-image: url(imgChkSprite.png);
+    background-position: 0px 0px;
+}
+.itemPhoneSelected:hover{
+    border-color:orange ;    
+}
+.btnSelection{
+    width: 16px;
+    height: 9px;
+    margin-top: auto;
+    margin-bottom: auto;
+    border: solid silver 1px;
+}            
+.btnSelection:hover{
+    border-color: orange ;    
+}
+.btnUp{
+    background-image: url(../../icons/arrow_up.png);
+    background-position: center center;
+}
+.btnDown{
+    background-image: url(../../icons/arrow_down.png);
+    background-position: center center;   
+}
+
+.selected{
+    /*background-color: #15B4FF;*/
+    background-image: url(imgChkSprite.png);
+    background-position: 0px -26px;
+}
+
